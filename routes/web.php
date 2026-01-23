@@ -14,7 +14,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)
+    ->middleware('auth')
+    ->except(['index', 'show']);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
